@@ -1,104 +1,86 @@
-# MediCloud &mdash; Cloud-Based Hospital Management System
+MediCloud — Cloud-Based Hospital Management System
+A self-hosted cloud dashboard designed to manage hospital patients, doctors, and appointments. This project was developed for a University Cloud Computing course.
 
-Ek self-hosted cloud dashboard jo hospital ke patients, doctors aur appointments manage karta hai.
-University cloud computing project ke liye banaya gaya hai.
+How to Run (2 Simple Commands)
+Requirement: Make sure you have Node.js installed on your computer.
 
-## Kaise Run Karein (2 commands)
+Open your terminal or CMD inside the project folder.
 
-Requirement: **Node.js** installed hona chahiye (nodejs.org se download karain agar nahi hai).
+Run these two commands:
 
-Project folder ke andar terminal/CMD kholain aur ye 2 commands chalayen:
-
-```
+Bash
 npm install
 npm start
-```
+Open your browser and go to: http://localhost:3000
 
-Phir browser mein ye link kholain:
+Login Credentials:
 
-```
-http://localhost:3000
-```
+Username: admin
 
-**Login credentials:**
-- Username: `admin`
-- Password: `admin123`
+Password: admin123
 
-Bas! Poora system chal jaye ga &mdash; login, dashboard, patients, doctors, appointments sab kuch.
+Project Architecture
+The system follows a standard Client-Server model:
+Browser (UI) <--> Express.js Server (Node.js) <--> db.json (Data Store)
 
-## Project Kaise Kaam Karta Hai (Architecture)
+Frontend: HTML, CSS, and JavaScript (located in the public/ folder).
 
-```
-Browser (UI)  <-->  Express.js Server (Node.js)  <-->  db.json (Cloud data store)
-```
+Backend: Node.js + Express.js (REST API).
 
-- **Frontend**: HTML, CSS, JavaScript (public/ folder) &mdash; login page aur dashboard
-- **Backend**: Node.js + Express.js (server.js aur routes/ folder) &mdash; REST API
-- **Database**: JSON file-based store (data/db.json) &mdash; server ke through hi access hota hai, seedha file access allowed nahi
+Database: JSON file-based storage (data/db.json).
 
-## Features
+Key Features
+Authentication: Role-based login system for Administrators.
 
-- Secure-style login system (role-based: Administrator)
-- Dashboard with live stats (total patients, admitted, doctors, today's appointments)
-- Patients module: Add / Edit / Delete / View
-- Doctors module: Add / Edit / Delete / View
-- Appointments module: Add / Edit / Delete / View, with status tracking (Pending/Confirmed/Completed/Cancelled)
-- Fully responsive, modern UI
+Live Dashboard: View total patients, admitted cases, doctors, and daily appointments.
 
-## Ye "Cloud Computing" Project Kyun Hai
+CRUD Modules: Full Create, Read, Update, and Delete support for Patients, Doctors, and Appointments.
 
-Ye project client-server cloud model follow karta hai:
-1. **Server** (Node.js/Express) data aur logic host karta hai
-2. **Clients** (browser, mobile) us server se REST API ke zariye connect hotay hain
-3. Data centrally ek jagah store hota hai, jahan se kayi devices access kar saktay hain
+Appointment Tracking: Manage statuses (Pending, Confirmed, Completed, Cancelled).
 
-### Actual Cloud Par Deploy Karne Ke Liye (Optional, extra marks ke liye)
+UI/UX: Fully responsive and modern interface.
 
-Is project ko real cloud par deploy karne ke 3 tareeqay hain:
+Why is this a "Cloud Computing" Project?
+This project implements a classic cloud model:
 
-**Option A &mdash; Apna PC hi cloud server banayen** (jaisa pehlay discuss kiya):
-1. Router mein port forwarding karain (port 3000)
-2. `npm start` chalayen, PC ko on rakhain
-3. Kahin se bhi `http://[your-public-ip]:3000` se access karain
+Centralized Server: The Node.js/Express server hosts all data and logic.
 
-**Option B &mdash; Free cloud hosting (Render.com / Railway.app)**:
-1. GitHub par project push karain
-2. Render.com par "New Web Service" banayen, GitHub repo connect karain
-3. Build command: `npm install`, Start command: `npm start`
-4. Deploy hone ke baad public URL mil jaye ga
+Client Access: Clients (browsers/mobile) connect to the server via REST APIs.
 
-**Option C &mdash; ngrok se temporary public link**:
-```
-npm start
-ngrok http 3000
-```
+Remote Accessibility: Data is stored centrally, allowing multiple devices to access the system.
 
-## Folder Structure
+Deployment Options
+Option A (Self-Hosting):
 
-```
+Configure port forwarding (port 3000) on your router.
+
+Run npm start and keep your PC running.
+
+Access the app from anywhere using: http://[your-public-ip]:3000
+
+Option B (Free Cloud Hosting):
+
+Push your project to GitHub.
+
+Connect your repository to Render.com or Railway.app.
+
+Use npm install as the build command and npm start to run it.
+
+Option C (Temporary Access):
+
+Run npm start and then use ngrok http 3000 to generate a temporary public URL.
+
+Project Structure
+Plaintext
 hospital-management-system/
-├── server.js              # Main server entry point
-├── package.json
-├── data/
-│   └── db.json             # Cloud data store
-├── routes/
-│   ├── auth.js
-│   ├── patients.js
-│   ├── doctors.js
-│   └── appointments.js
-├── utils/
-│   └── db.js                # Database read/write helper
-└── public/
-    ├── index.html            # Login page
-    ├── dashboard.html         # Main dashboard
-    ├── css/style.css
-    └── js/
-        ├── login.js
-        └── dashboard.js
-```
+├── server.js              # Main server entry
+├── data/db.json           # Data storage
+├── routes/                # API routes
+├── public/                # Frontend files (HTML/CSS/JS)
+└── package.json           # Dependencies
+Notes for Report
+Communication: Frontend interacts with the backend via REST API (JSON).
 
-## Report Ke Liye Notes
+Functionality: Full CRUD (Create, Read, Update, Delete) operations are implemented.
 
-- **Frontend-Backend communication**: REST API (fetch calls, JSON format)
-- **CRUD operations**: Create, Read, Update, Delete &mdash; sab modules mein implemented hain
-- **Security note for report**: Ye demo-level authentication hai (plain text password comparison). Production/real system ke liye bcrypt hashing aur JWT tokens use karne chahiye &mdash; report mein "future improvements" section mein likh sakte hain.
+Security Recommendation: This is a demo-level authentication system. For production, it is recommended to use bcrypt for password hashing and JWT (JSON Web Tokens) for secure session management.
