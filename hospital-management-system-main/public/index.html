@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MediCloud &mdash; Hospital Management System</title>
+<link rel="stylesheet" href="css/style.css">
+<style>
+  /* Eye icon ko input field ke andar Pright side par set karne ke liye CSS */
+  .password-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  .toggle-password-btn {
+    position: absolute;
+    right: 12px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 0;
+    color: #666;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .toggle-password-btn:focus {
+    outline: none;
+  }
+</style>
+</head>
+<body>
+
+<div class="login-wrap">
+
+  <div class="login-hero">
+    <div class="brand">MediCloud HMS</div>
+    <h1>Ward, staff and appointments &mdash; all in one calm view.</h1>
+    <p>A self-hosted cloud dashboard that manages your hospital's patients, doctors and appointments in real time.</p>
+
+    <div class="pulse-wrap">
+      <svg viewBox="0 0 480 90" preserveAspectRatio="none">
+        <path class="pulse-line" d="M0,45 L90,45 L110,45 L125,15 L145,75 L165,45 L185,45 L200,30 L215,45 L480,45" />
+      </svg>
+    </div>
+
+    <div class="stat-row">
+      <div><div class="num">24/7</div><div class="lbl">Cloud availability</div></div>
+      <div><div class="num">100%</div><div class="lbl">Data on your server</div></div>
+      <div><div class="num">3</div><div class="lbl">Roles supported</div></div>
+    </div>
+  </div>
+
+  <div class="login-form-side">
+    <div class="login-box">
+      <h2>Welcome back</h2>
+      <div class="sub">Sign in to your dashboard</div>
+
+      <div class="field">
+        <label for="username">Email</label>
+        <input type="text" id="username" placeholder="admin@hospital.com" autocomplete="username">
+      </div>
+
+      <div class="field">
+        <label for="password">Password</label>
+        <div class="password-container">
+          <input type="password" id="password" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;" autocomplete="current-password" style="width: 100%; padding-right: 40px;">
+          <button type="button" id="togglePassword" class="toggle-password-btn">👁️</button>
+        </div>
+      </div>
+
+      <div class="error-msg" id="errorMsg">Ghalat username ya password</div>
+
+      <button class="btn btn-primary" id="loginBtn">Login to dashboard</button>
+
+    </div>
+  </div>
+
+</div>
+
+<script src="js/login.js"></script>
+<script>
+  // 1. Password Show/Hide (Eye Icon) ki Logic
+  const passwordInput = document.getElementById('password');
+  const togglePasswordBtn = document.getElementById('togglePassword');
+
+  togglePasswordBtn.addEventListener('click', function () {
+    const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+    passwordInput.setAttribute('type', type);
+    this.textContent = type === 'password' ? '👁️' : '🙈';
+  });
+
+  // 2. Security Token (Jab sahi login ho toh ye browser me save ho jaye)
+  document.getElementById('loginBtn').addEventListener('click', function() {
+    const emailValue = document.getElementById('username').value;
+    const passValue = passwordInput.value;
+
+    if (emailValue === 'head-admin@hospital.com' && passValue === 'SecureHospital@2026') {
+      localStorage.setItem('isLoggedIn', 'true');
+    }
+  });
+</script>
+</body>
+</html>

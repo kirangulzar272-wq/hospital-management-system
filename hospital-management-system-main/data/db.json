@@ -1,0 +1,84 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "head-admin@hospital.com",
+      "password": "SecureHospital@2026",
+      "name": "Admin User",
+      "role": "Administrator"
+    }
+  ],
+  "patients": [
+    {
+      "id": 2,
+      "name": "Sana Khan",
+      "age": 27,
+      "gender": "Female",
+      "phone": "0321-9876543",
+      "condition": "Fracture (Left Arm)",
+      "status": "Discharged",
+      "admittedOn": "2026-07-03",
+      "ward": "Orthopedic - O4"
+    },
+    {
+      "id": 4,
+      "name": "Kiran",
+      "age": 21,
+      "gender": "Female",
+      "phone": "6576886",
+      "condition": "injury",
+      "ward": "3",
+      "status": "Admitted",
+      "admittedOn": "2026-07-03"
+    }
+  ],
+  "doctors": [
+    {
+      "id": 1,
+      "name": "Dr. Ayesha Malik",
+      "specialization": "Cardiologist",
+      "phone": "0301-1112222",
+      "email": "ayesha.malik@hospital.com",
+      "availability": "Mon - Fri, 9am - 3pm"
+    },
+    {
+      "id": 2,
+      "name": "Dr. Usman Tariq",
+      "specialization": "Orthopedic Surgeon",
+      "phone": "0302-3334444",
+      "email": "usman.tariq@hospital.com",
+      "availability": "Mon - Sat, 11am - 6pm"
+    },
+    {
+      "id": 3,
+      "name": "Dr. Hina Farooq",
+      "specialization": "Pediatrician",
+      "phone": "0303-5556666",
+      "email": "hina.farooq@hospital.com",
+      "availability": "Tue - Sun, 10am - 4pm"
+    }
+  ],
+  "appointments": [
+    {
+      "id": 2,
+      "patientName": "Sana Khan",
+      "doctorName": "Dr. Usman Tariq",
+      "date": "2026-07-04",
+      "time": "12:00",
+      "status": "Confirmed"
+    },
+    {
+      "id": 4,
+      "patientName": "Kiran",
+      "doctorName": "Dr. Hina Farooq",
+      "date": "2026-07-15",
+      "time": "01:56",
+      "status": "Confirmed"
+    }
+  ],
+  "nextIds": {
+    "patients": 5,
+    "doctors": 4,
+    "appointments": 5
+  }
+}

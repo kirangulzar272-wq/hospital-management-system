@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <script>
+  // Agar banda bina login kiye aaya hai, to usay wapas login page par bhejo
+  if (localStorage.getItem('isLoggedIn') !== 'true') {
+      alert('Pehle login karein!');
+      window.location.href = 'index.html';
+  }
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MediCloud &mdash; Dashboard</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="app">
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="brand-mark">
+      <div class="dot"></div>
+      <span>MediCloud HMS</span>
+    </div>
+
+    <div class="nav-item active" data-tab="dashboard"><span class="ic">&#9679;</span> Dashboard</div>
+    <div class="nav-item" data-tab="patients"><span class="ic">&#9679;</span> Patients</div>
+    <div class="nav-item" data-tab="doctors"><span class="ic">&#9679;</span> Doctors</div>
+    <div class="nav-item" data-tab="appointments"><span class="ic">&#9679;</span> Appointments</div>
+
+    <div class="sidebar-footer">
+      <div class="user-chip">
+        <div class="avatar" id="userAvatar">A</div>
+        <div>
+          <div class="uname" id="userName">&mdash;</div>
+          <div class="urole" id="userRole">&mdash;</div>
+        </div>
+      </div>
+      <div class="logout-link" id="logoutBtn">Log out</div>
+    </div>
+  </div>
+
+  <!-- Main -->
+  <div class="main">
+
+    <!-- ============ DASHBOARD TAB ============ -->
+    <div class="tab-content" id="tab-dashboard">
+      <div class="topbar">
+        <div>
+          <h1>Overview</h1>
+          <div class="date" id="todayDate"></div>
+        </div>
+      </div>
+
+      <div class="stat-grid">
+        <div class="stat-card"><div class="accent-bar" style="background:linear-gradient(90deg,#7C3AED,#A78BFA)"></div>
+          <div class="stat-num" id="statPatients">0</div><div class="stat-lbl">Total patients</div></div>
+        <div class="stat-card"><div class="accent-bar" style="background:linear-gradient(90deg,#F59E0B,#FBBF24)"></div>
+          <div class="stat-num" id="statAdmitted">0</div><div class="stat-lbl">Currently admitted</div></div>
+        <div class="stat-card"><div class="accent-bar" style="background:linear-gradient(90deg,#06B6D4,#5EEAD4)"></div>
+          <div class="stat-num" id="statDoctors">0</div><div class="stat-lbl">Doctors on staff</div></div>
+        <div class="stat-card"><div class="accent-bar" style="background:linear-gradient(90deg,#EC4899,#F472B6)"></div>
+          <div class="stat-num" id="statToday">0</div><div class="stat-lbl">Appointments today</div></div>
+      </div>
+
+      <div class="section-card">
+        <div class="sc-head"><h3>Recent patients</h3></div>
+        <table>
+          <thead><tr><th>Name</th><th>Condition</th><th>Ward</th><th>Status</th></tr></thead>
+          <tbody id="recentPatientsBody"></tbody>
+        </table>
+      </div>
+
+      <div class="section-card">
+        <div class="sc-head"><h3>Upcoming appointments</h3></div>
+        <table>
+          <thead><tr><th>Patient</th><th>Doctor</th><th>Date</th><th>Time</th><th>Status</th></tr></thead>
+          <tbody id="recentApptBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ============ PATIENTS TAB ============ -->
+    <div class="tab-content tab-hidden" id="tab-patients">
+      <div class="topbar">
+        <div><h1>Patients</h1><div class="date">Manage records and admissions</div></div>
+        <button class="btn btn-primary" style="width:auto" id="addPatientBtn">+ Add patient</button>
+      </div>
+      <div class="section-card">
+        <table>
+          <thead><tr><th>Name</th><th>Age</th><th>Gender</th><th>Phone</th><th>Condition</th><th>Ward</th><th>Status</th><th></th></tr></thead>
+          <tbody id="patientsBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ============ DOCTORS TAB ============ -->
+    <div class="tab-content tab-hidden" id="tab-doctors">
+      <div class="topbar">
+        <div><h1>Doctors</h1><div class="date">View staff and specializations</div></div>
+        <button class="btn btn-primary" style="width:auto" id="addDoctorBtn">+ Add doctor</button>
+      </div>
+      <div class="section-card">
+        <table>
+          <thead><tr><th>Name</th><th>Specialization</th><th>Phone</th><th>Email</th><th>Availability</th><th></th></tr></thead>
+          <tbody id="doctorsBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ============ APPOINTMENTS TAB ============ -->
+    <div class="tab-content tab-hidden" id="tab-appointments">
+      <div class="topbar">
+        <div><h1>Appointments</h1><div class="date">Track schedule and status</div></div>
+        <button class="btn btn-primary" style="width:auto" id="addApptBtn">+ New appointment</button>
+      </div>
+      <div class="section-card">
+        <table>
+          <thead><tr><th>Patient</th><th>Doctor</th><th>Date</th><th>Time</th><th>Status</th><th></th></tr></thead>
+          <tbody id="apptBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============ MODAL ============ -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal-box">
+    <h3 id="modalTitle">Add record</h3>
+    <div id="modalFormFields"></div>
+    <div class="modal-actions">
+      <button class="btn btn-outline" id="modalCancelBtn">Cancel</button>
+      <button class="btn btn-primary" id="modalSaveBtn">Save</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/dashboard.js"></script>
+</body>
+</html>
